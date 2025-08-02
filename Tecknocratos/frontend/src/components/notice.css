@@ -1,0 +1,44 @@
+.notice-container {
+  width: 100%;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* List style */
+.notice-container ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+  max-height: 15rem; /* Adjust height per item * 5 */
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* Each list item */
+.notice-container li {
+  margin-bottom: 1.5rem;
+  color: black;         /* text color */
+  font-size: 1rem;
+  font-weight: bold;    /* bold text */
+}
+
+/* Scrollbar styling */
+.notice-container ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notice-container ul::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 3px;
+}
+
+.notice-container ul::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
