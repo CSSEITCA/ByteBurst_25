@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*selector {
+    box-sizing: border-box;
+}
+
+
+
+* a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: black;
+}
+
+nav {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    background-color: black;
+    justify-content: space-between;
+}
+
+#logo img {
+    width: 74.9px;
+    height: 24.9px;
+}
+
+#mid {
+    font-size: 0.81rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 45%;
+}
+
+nav button {
+    border: none;
+    background-color:  #5e1ba1;
+    border-radius: 8px;
+    padding: 8px 15px;
+    color: rgb(255, 255, 255);
+    transition: color 0.3s ease, transform 0.3s ease;
+
+}
+
+#welcome {
+    line-height: 4rem;
+    margin-left: 5%;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 13%;
+}
+
+#welcome h1 {
+    color:  #5e1ba1;
+}
+
+#welcome h2 {
+    color: white
+}
+
+* a:hover {
+    color:  #5e1ba1;
+    transform: 0.3s ease;
+}
+
+* button:hover {
+    background-color:  #5e1ba1;
+    transform: 0.3s ease;
+
+    cursor: pointer;
+}
+
+
+#wrapper {
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    align-items: center;
+    position: relative;
+}
+
+#leftbracket,
+#rightbracket {
+    opacity: 0;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+#leftbracket {
+    animation-name: slideOutLeft;
+}
+
+#rightbracket {
+    animation-name: slideOutRight;
+}
+#full {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#text {
+    font-size: 3rem;
+    opacity: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 1s steps(40, end) forwards;
+    animation-delay: 0.5s;
+    color: #5e1ba1;
+
+}
+#of{
+    align-items: center;
+    justify-content: center;
+    margin-left: 40%;
+}
+
+@keyframes slideOutLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-40px);
+    }
+}
+
+@keyframes slideOutRight {
+    0% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(40px);
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}

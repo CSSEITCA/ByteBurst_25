@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Events - CSSE</title>
+    <link rel="stylesheet" href="ev.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Oswald:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo"><img src="d66fc73a708861c33f5a89242e5e765d935e9b97.png" alt="CSSE" class="csse"></div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="checlk.html">GALLERY</a></li>
+                <li><a href="mteam.html">ABOUT US</a></li>
+                <li><a href="team.html">CONTACT US</a></li>
+            </ul>
+        </nav>
+        <div class="account-btn">
+            <a href="login.html" class="btn-primary">Login</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="events-title">EVENTS</div>
+        <div class="tagline">
+           <b> EXPERIENCE A DYNAMIC<br>
+            RANGE OF EVENTS WITH<br>
+            CSSE</b>
+        </div>
+        <div class="event-buttons">
+            <button class="event-btn" onclick="showSlider('formal')">FORMAL EVENTS</button>
+            <button class="event-btn" onclick="showSlider('informal')">INFORMAL EVENTS</button>
+        </div>
+    </main>
+    <div id="formalSlider" class="slider-wrapper">
+<div class="slider-container">
+        <div class="nav-buttons">
+            <button onclick="prevSlide()">&#10094;</button>
+            <button onclick="nextSlide()">&#10095;</button>
+        </div>
+        <div class="slider" id="slider">
+            <!-- Repeat this div for each image -->
+            <div class="slide active">
+                <div class="title">Technical Presentation</div>
+                <img src="tp.jpg" alt="Slide 1">
+                <div class="register"><a href="registration.html">REGISTER</a></div>
+            </div>
+            <div class="slide">
+                <div class="title">Debate</div>
+                <img src="db.jpg" alt="Slide 2">
+                <div class="register"><a href="registration.html">REGISTER</a></div>
+            </div>
+            <div class="slide">
+                <div class="title">Extempore</div>
+                <img src="ext.jpg" alt="Slide 3">
+                <div class="register"><a href="registration.html">REGISTER</a></div>
+            </div>
+            <div class="slide">
+                <div class="title">Group Discussion</div>
+                <img src="gd.jpg" alt="Slide 4">
+                <div class="register"><a href="registration.html">REGISTER</a></div>
+            </div>
+            <!-- Add more slides as needed -->
+            <div class="slide">
+                <div class="title">Bug busters</div>
+                <img src="bb.jpg" alt="Slide 4">
+                <div class="register"><a href="registration.html">REGISTER</a></div>
+            </div>
+            <div class="slide">
+                <div class="title">Byteburst</div>
+                <img src="byb.jpg" alt="Slide 4">
+                <div class="register"><a href="registration.html">REGISTER</a></div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="informalSlider" class="slider-wrapper" style="display: none;">
+       <div class="slider-container">
+        <div class="nav-buttons">
+            <button onclick="prevSlide()">&#10094;</button>
+            <button onclick="nextSlide()">&#10095;</button>
+        </div>
+        <div class="slider" id="slider">
+            <!-- Repeat this div for each image -->
+            <div class="slide active">
+                <div class="title">Singing</div>
+                <img src="sing.jpg" alt="Slide 1">
+                <div class="register"><a href="registration.html">REGISTER</a></div>
+            </div>
+            <div class="slide">
+                <div class="title">Dancing</div>
+                <img src="dance.jpg" alt="Slide 2">
+                <div class="register"><a href="registration.html">REGISTER</a></div>
+            </div>
+            <div class="slide">
+                <div class="title">Open mic</div>
+                <img src="op mic.jpg" alt="Slide 3">
+                <div class="register"><a href="registration.html">REGISTER</a></div>
+            </div>
+            <div class="slide">
+                <div class="title">Instrumental</div>
+                <img src="instrument.jpg" alt="Slide 4">
+                <div class="register"><a href="registration.html">REGISTER</a></div>
+            </div>
+            <!-- Add more slides as needed -->
+            <div class="slide">
+                <div class="title">Paper Dance</div>
+                <img src="dance.jpg" alt="Slide 4">
+                <div class="register"><a href="registration.html">REGISTER</a></div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    const slider = document.getElementById("slider");
+    const slides = document.querySelectorAll(".slide");
+    let currentIndex = 0;
+
+    function updateSlides() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove("active");
+            if (index === currentIndex) {
+                slide.classList.add("active");
+            }
+        });
+
+        const slideWidth = slides[0].offsetWidth + 20; // slide + margin
+        const offset = slideWidth * currentIndex;
+        slider.style.transform = `translateX(calc(50% - ${offset + slideWidth / 2}px))`;
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlides();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlides();
+    }
+
+    // Optional: Auto-slide every 5 seconds
+    setInterval(nextSlide, 2000);
+    function showSlider(type) {
+    const formal = document.getElementById("formalSlider");
+    const informal = document.getElementById("informalSlider");
+
+    if (type === "formal") {
+      formal.style.display = "flex";
+      informal.style.display = "none";
+    } else {
+      informal.style.display = "flex";
+      formal.style.display = "none";
+    }
+  }
+</script>
+
+</html>

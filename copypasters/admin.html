@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard - CSSE</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <nav class="navbar">
+  <div class="logo"><img  class="csse" src="images/d66fc73a708861c33f5a89242e5e765d935e9b97.png"></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mteam.html">Team</a></li>
+    <li><a href="#">Events</a></li>
+    <li><a href="checlk.html">Gallery</a></li>
+    <li><a href="team.html">Contact</a></li>
+  </ul>
+  <button class="account-btn">Login</button>
+</nav>
+
+
+  <main class="admin-container">
+    <h2>Admin Panel - Event Registrations</h2>
+
+    <div class="entry-stats">
+      <p>Total Entries: <span id="entry-count">0</span></p>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-bar-fill"></div>
+      </div>
+    </div>
+
+    <div id="registration-table">
+      <!-- Registration data loads here -->
+    </div>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

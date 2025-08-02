@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register for Event</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="registration.css" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar-center"><img class="csse" src="d66fc73a708861c33f5a89242e5e765d935e9b97.png"></div>
+  </header>
+ 
+  <!-- Registration Form -->
+  <main class="form-container">
+    <h2 id="event-name">EVENT REGISTRATION</h2>
+
+    <form class="registration-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Your full name" required />
+
+      <label for="branch">Branch</label>
+      <input type="text" id="branch" placeholder="Your branch" required />
+
+      <label for="Event">Event Name</label>
+      <input type="text" id="Event" placeholder="Event" required />
+
+
+      <label for="rollno">Roll Number</label>
+      <input type="text" id="rollno" placeholder="Your university roll no." required />
+
+      <label for="teamname">Team Name</label>
+      <input type="text" id="teamname" placeholder="Enter team name" required />
+
+      <label for="participants">Team Participants</label>
+      <textarea id="participants" rows="4" placeholder="List team members' names" required></textarea>
+
+      <label for="contact">Contact No.</label>
+      <input type="text" id="contact" placeholder="Your contact number" required />
+
+
+      <button type="submit" onclick="alert('Submitted Successfully!!')">Submit Registration</button>
+    </form>
+  </main>
+
+  <script>
+   
+    
+    
+
+
+    const form = document.querySelector(".registration-form");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const eventName = urlParams.get("event") || "General";
+
+      const entry = {
+        name: document.getElementById("name").value,
+        branch: document.getElementById("branch").value,
+        Event: document.getElementById("Event").value,
+        rollno: document.getElementById("rollno").value,
+        teamname: document.getElementById("teamname").value,
+        participants: document.getElementById("participants").value,
+        contact: document.getElementById("contact").value,
+        event: eventName,
+        time: new Date().toLocaleString()
+      };
+
+      // Save to localStorage
+      let data = JSON.parse(localStorage.getItem("registrations")) || [];
+      data.push(entry);
+      localStorage.setItem("registrations", JSON.stringify(data));
+
+      alert("Registration submitted successfully!");
+      form.reset();
+    });
+
+
+
+
+  </script>
+
+</body>
+
+</html>
