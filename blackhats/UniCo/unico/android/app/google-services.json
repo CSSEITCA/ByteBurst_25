@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "1032577904959",
+    "firebase_url": "https://unico-31510-default-rtdb.firebaseio.com",
+    "project_id": "unico-31510",
+    "storage_bucket": "unico-31510.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032577904959:android:a4e19e50f2073b2a03638a",
+        "android_client_info": {
+          "package_name": "com.example.unico"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKurGO6gUnHDv3AztgsjKT8JCB8A4csVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032577904959:android:1cbe3251ee854a4603638a",
+        "android_client_info": {
+          "package_name": "com.unico.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKurGO6gUnHDv3AztgsjKT8JCB8A4csVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
