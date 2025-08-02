@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost & Found Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f1f5f9;
+      overflow-x: hidden;
+    }
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #1f2937;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: #2563eb;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+    .categories {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .update-card {
+      background: white;
+      flex: 5 10 300px;
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    footer {
+      background-color: #222;
+      color: #ddd;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    footer a {
+      color: #aaa;
+      text-decoration: none;
+      display: block;
+      margin: 0.2rem;
+    }
+     button {
+      padding: 0.5rem 1rem;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input, textarea {
+      
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    
+    .categories {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+
+  </style>
+  
+</head>
+<body>
+ 
+
+  
+  </header>
+
+<section class="categories">
+  <h2 class="section-title">Categories</h2>
+  <div class="card-container">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1529338296731-c4280a44fc48?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZWxlY3Ryb25pY3xlbnwwfHwwfHx8MA%3D%3D" alt="Electronics">
+      <h3>Electronics</h3>
+      <p>Find your lost electronic gadgets like mobile phones, laptops, cameras, etc.</p>
+    </div>
+    <div class="card">
+      <img src="https://media.istockphoto.com/id/825592038/photo/top-view-flat-lay-accessoire-to-travel-and-technology-with-woman-lady-clothing-on-white-wooden.jpg?s=612x612&w=0&k=20&c=Z79r1ukW_ZAsQuYXlirL9NP0L4LB4tG4tOfJeEobpKc=" alt="Accessories">
+      <h3>Accessories</h3>
+      <p>Lost your accessories? Search for watches, jewelry, glasses, and more.</p>
+    </div>
+    <div class="card">
+      <img src="https://plus.unsplash.com/premium_photo-1661313626999-90d230cabf8d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZG9jdW1lbnRzfGVufDB8fDB8fHww" alt="Documents">
+      <h3>Documents</h3>
+      <p>Retrieve your important documents such as ID cards, passports, and certificates.</p>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" style="padding: 60px 20px; background: linear-gradient(135deg, #c2e9fb, #a1c4fd); text-align: center;">
+    <h2>How It Works</h2>
+    <div id="step-container" style="display: flex; justify-content: center; flex-wrap: wrap; margin-top: 30px;"></div>
+    <div style="margin-top: 20px;">
+      <button onclick="showSteps(0)" class="btn-primary">1–3</button>
+      <button onclick="showSteps(1)" class="btn-primary">4–5</button>
+    </div>
+  </section>
+
+  <!-- Latest Updates Section -->
+  <section id="latest-updates" style="padding: 60px 20px; background: linear-gradient(to right, #fbc2eb, #a6c1ee); text-align: center;">
+    <h2>Latest Updates</h2>
+    <div id="updates-wrapper" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; padding: 10px 0;">
+      <div class="update-card">🔔<h3>New Feature Launch</h3><p>Check out our new image-based reporting system!</p></div>
+      <div class="update-card">🔐<h3>Security Update</h3><p>Improved data protection using encryption.</p></div>
+      <div class="update-card">🎨<h3>UI Revamp</h3><p>Better navigation, mobile support added.</p></div>
+    </div>
+  </section>
+
+  <script>
+    const steps = [
+      { title: "Step 1: Report", desc: "User reports a lost item using the portal’s interface.", icon: "🔍" },
+      { title: "Step 2: Database Entry", desc: "Item details are stored securely in the system.", icon: "🗃️" },
+      { title: "Step 3: Search", desc: "Users can search items using filters.", icon: "🔎" },
+      { title: "Step 4: Verification", desc: "Admin verifies and validates ownership.", icon: "✅" },
+      { title: "Step 5: Return", desc: "Verified items are returned to rightful owners.", icon: "🤝" }
+    ];
+
+    function showSteps(group = 0) {
+      const container = document.getElementById('step-container');
+      container.innerHTML = '';
+      const start = group * 3;
+      const end = start + 3;
+      steps.slice(start, end).forEach(step => {
+        const card = document.createElement('div');
+        card.style = "background: white; border-radius: 12px; padding: 20px; margin: 10px; width: 280px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);";
+        card.innerHTML = `<div style="font-size: 2rem;">${step.icon}</div><h3>${step.title}</h3><p style="color: #4b5563;">${step.desc}</p>`;
+        container.appendChild(card);
+      });
+    }
+
+    showSteps(0);
+  </script>
+  <footer>
+  <div>
+    <h3>Quick Links</h3>
+    <a href="#">About Us</a>
+    <a href="#">Categories</a>
+    <a href="#">Search</a>
+  </div>
+  <div class="newsletter">
+    <p>Subscribe to Our Newsletter</p>
+    <input type="email" placeholder="Your email" />
+    <button>Subscribe</button>
+  </div>
+  <p>&copy; 2025 Lost and Found Portal. All rights reserved.</p>
+</footer>
+</body>
+</html>

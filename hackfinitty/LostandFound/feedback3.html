@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lost & Found – Feedback</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f6fb; --card:#fff; --txt:#222; --accent:#4099ff; --accent2:#ffc75f; --muted:#6b7280;
+}
+[data-theme="dark"]{
+  --bg:#0f172a; --card:#1e293b; --txt:#e2e8f0; --accent:#60a5fa; --accent2:#facc15; --muted:#94a3b8;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Poppins,Segoe UI,Arial,sans-serif}
+body {
+  background: linear-gradient(135deg, #dfe9f3, #ffffff);
+  background-attachment: fixed;
+  color: var(--txt);
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  position: relative;
+  overflow: auto;
+}
+[data-theme="dark"] body {
+  background: radial-gradient(circle at top left, #0f172a, #1e293b 70%);
+}
+.card {
+  margin-bottom: 1000px; /* just to test scrolling */
+}
+.card{width:100%;max-width:640px;background:var(--card);border-radius:16px;padding:32px 28px;box-shadow:0 10px 28px rgba(0,0,0,.07);position:relative;overflow:hidden;transition:.3s}
+h2{text-align:center;margin-bottom:24px;font-weight:500}
+label{display:block;margin:12px 0 6px;font-size:.9rem;color:var(--muted)}
+input[type=text],input[type=email],select,textarea{
+  width:100%;padding:12px 16px;border:2px solid transparent;border-radius:12px;background:#eef2f8;font-size:.95rem;transition:border .2s,background .2s
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none;background:#e7f1ff}
+textarea{resize:vertical;min-height:100px}
+.charcount{font-size:.75rem;text-align:right;color:var(--muted);margin-top:4px}
+.rating-wrap{margin:16px 0 22px}
+.range{width:100%}
+.range::-webkit-slider-thumb{appearance:none;height:28px;width:28px;border-radius:50%;background:var(--accent);cursor:pointer;transition:.2s}
+.range:focus::-webkit-slider-thumb{transform:scale(1.15)}
+.emoji{font-size:32px;text-align:center;margin-top:8px;transition:.2s}
+.privacy{display:inline-flex;align-items:center;font-size:.8rem;color:var(--muted);gap:4px}
+.privacy:hover .tip{opacity:1;pointer-events:auto}
+.tip{position:absolute;background:var(--txt);color:var(--card);padding:6px 10px;font-size:.75rem;border-radius:6px;top:-32px;right:0;opacity:0;pointer-events:none;transition:.2s;white-space:nowrap}
+.filebox{display:flex;align-items:center;gap:12px;margin-top:12px}
+.filebox input{flex:1}
+.preview{max-height:56px;border-radius:8px}
+button{margin-top:24px;width:100%;padding:14px;border:none;border-radius:12px;background:var(--accent);color:#fff;font-size:1rem;font-weight:500;cursor:pointer;transition:background .25s}
+button:hover{background:#1d80ff}
+.toggle{position:absolute;top:18px;right:22px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--txt)}
+/* toast */
+.toast{position:fixed;top:28px;right:-400px;background:var(--accent);color:#fff;padding:12px 20px;border-radius:12px;font-size:.9rem;display:flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(0,0,0,.15);transition:right .5s}
+.toast.show{right:28px}
+.toast svg{stroke:#fff;stroke-width:2;fill:none;height:18px;width:18px;animation:dash 1.2s ease forwards}
+@keyframes dash{
+ from{stroke-dasharray:50;stroke-dashoffset:50}
+ to{stroke-dasharray:50;stroke-dashoffset:0}
+}
+/* FAQ */
+.faq{margin-top:32px}
+.faq input{margin-bottom:12px}
+details{border:1px solid var(--accent);border-radius:10px;padding:12px 16px;margin-bottom:10px;background:rgba(64,153,255,.05)}
+summary{cursor:pointer;font-weight:500;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;transition:.3s;font-weight:600}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin-top:8px;font-size:.88rem;line-height:1.5;color:var(--muted)}
+/* focus outline */
+input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--accent2);outline-offset:2px}
+
+/* simple progress bar */
+.progress{height:4px;width:100%;background:#cbd5e1;border-radius:4px;overflow:hidden;margin-top:8px;display:none}
+.progress div{height:100%;width:0;background:var(--accent);transition:width .3s}
+.decorative-shapes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  overflow: hidden;
+  z-index: -1;
+}
+.blob, .blob2 {
+  position:absolute;
+  width: 300px;
+  height: 300px;
+  background: var(--accent);
+  opacity: 0.15;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: moveBlob 12s infinite alternate ease-in-out;
+}
+.blob2 {
+  left: auto;
+  right: 5%;
+  top: 50%;
+  background: var(--accent2);
+  animation-delay: 3s;
+}
+@keyframes moveBlob {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(60px, -40px); }
+}
+
+</style>
+</head>
+<body>
+<div class="decorative-shapes">
+  <div class="blob"></div>
+  <div class="blob2"></div>
+</div>
+
+<button class="toggle" id="themeToggle" title="Toggle light/dark">🌓</button>
+
+<form class="card" id="fbForm" novalidate>
+  <h2>We&nbsp;value&nbsp;your&nbsp;feedback</h2>
+
+  <label for="name">Name *</label>
+  <input id="name" name="name" type="text" required>
+
+  <label for="email">Email *</label>
+  <input id="email" name="email" type="email" required placeholder="you@example.com">
+
+  <label for="type">Feedback type *</label>
+  <select id="type" name="type" required>
+    <option value="" disabled selected>Select one</option>
+    <option>Complaint</option>
+    <option>Suggestion</option>
+    <option>Report Issue</option>
+    <option>Praise</option>
+  </select>
+
+  <label for="msg">Message *</label>
+  <textarea id="msg" name="msg" maxlength="500" required></textarea>
+  <div class="charcount" id="counter">0 / 500</div>
+
+  <div class="rating-wrap">
+    <label for="rate">Your mood:</label>
+    <input type="range" id="rate" class="range" min="1" max="5" value="3">
+    <div class="emoji" id="emoji">😐</div>
+  </div>
+
+  
+  <div class="privacy">
+    🛡️ Privacy
+    <span class="tip">We store your feedback securely &amp; never share personal data.</span>
+  </div>
+
+  <button type="submit">Submit feedback</button>
+
+ 
+  <!-- </div>
+</form> --> 
+
+<!-- toast -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  <span>Feedback sent – thank you!</span>
+</div>
+
+<script>
+/* === theme === */
+const root=document.documentElement;
+const toggle=document.getElementById('themeToggle');
+const stored=localStorage.getItem('theme');
+if(stored){root.setAttribute('data-theme',stored)}
+toggle.onclick=()=>{const t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);localStorage.setItem('theme',t)}
+
+/* === char counter === */
+const msg=document.getElementById('msg');
+const counter=document.getElementById('counter');
+msg.addEventListener('input',()=>counter.textContent=`${msg.value.length} / 500`);
+
+/* === rating emoji === */
+const emoji=document.getElementById('emoji'), range=document.getElementById('rate');
+const faces=['😠','😕','😐','😊','😍'];
+range.addEventListener('input',()=>emoji.textContent=faces[range.value-1]);
+
+/* === file preview + fake progress === */
+const fileInput=document.getElementById('file'), prev=document.getElementById('previewImg'), bar=document.getElementById('prog'), barFill=bar.firstElementChild;
+fileInput.onchange=()=>{
+  const f=fileInput.files[0];
+  if(!f)return;
+  if(f.type.startsWith('image/')){prev.hidden=false;prev.src=URL.createObjectURL(f)}
+  else{prev.hidden=true}
+  bar.style.display='block'; barFill.style.width='0';
+  let p=0; const int=setInterval(()=>{p+=10;barFill.style.width=p+'%';if(p>=100)clearInterval(int)},80);
+};
+
+/* === FAQ filter === */
+const qs=document.querySelectorAll('details');
+document.getElementById('faqSearch').addEventListener('input',e=>{
+  const q=e.target.value.toLowerCase();
+  qs.forEach(d=>{
+    const txt=d.querySelector('summary').textContent.toLowerCase();
+    d.style.display=txt.includes(q)?'block':'none';
+  });
+});
+
+/* === form submit === */
+const form=document.getElementById('fbForm'), toast=document.getElementById('toast');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!form.checkValidity()){form.reportValidity();return;}
+
+  // TODO: replace with real AJAX call
+  setTimeout(()=>showToast(),400);
+});
+function showToast(){
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),4000);
+  form.reset();emoji.textContent='😐';prev.hidden=true;bar.style.display='none';counter.textContent='0 / 500';
+}
+</script>
+</body>
+</html>

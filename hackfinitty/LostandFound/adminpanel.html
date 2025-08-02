@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - Lost and Found</title>
+  <link rel="stylesheet" href="admin.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .admin-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    img {
+      max-height: 50px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Admin Dashboard</h1>
+    <p>Manage user-submitted reports and view uploaded images</p>
+  </header>
+
+  <section class="table-section">
+    <h2>All Reports</h2>
+    <table id="reportsTable">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Item</th>
+          <th>Description</th>
+          <th>Location</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows will be injected here -->
+      </tbody>
+    </table>
+  </section>
+
+  <script>
+    const reports = JSON.parse(localStorage.getItem("lostFoundItems") || "[]");
+
+    const tableBody = document.querySelector('#reportsTable tbody');
+    reports.reverse().forEach(report => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${report.type}</td>
+        <td>${report.itemName}</td>
+        <td>${report.itemDescription}</td>
+        <td>${report.location || '-'}</td>
+        <td><img src="${report.imageBase64}" alt="Item Image"></td>
+       
+      `;
+      tableBody.appendChild(row);
+    });
+    
+  </script>
+</body>
+</html>
+

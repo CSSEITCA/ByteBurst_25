@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+              url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #00ffff;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #ccc;
+  margin-top: 10px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 40px 20px;
+  flex: 1;
+}
+
+.form-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  border-radius: 15px;
+  padding: 30px 25px;
+  width: 360px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  text-align: left;
+}
+
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+/* Wrap input or textarea + mic button together */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Input and textarea inside group */
+.input-group input,
+.input-group textarea {
+  flex: 1;
+  width: 100%;
+  padding: 12px;
+  padding-right: 40px; /* Space for mic */
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  background: white;
+  color: black;
+}
+
+/* Mic button */
+.mic-btn {
+  position: absolute;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #444;
+  transition: color 0.3s;
+}
+
+.mic-btn:hover {
+  color: #00ffff;
+}
+
+/* For normal inputs not in input-group */
+input:not(.input-group input),
+textarea:not(.input-group textarea) {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  background: white;
+  color: black;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.blue {
+  background-color: #007BFF;
+  color: white;
+}
+
+.green {
+  background-color: #28a745;
+  color: white;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  padding: 20px;
+  color: #bbb;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+.footer-links a {
+  color: #bbb;
+  margin: 0 5px;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

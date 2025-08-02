@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lost and Found Portal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+                  url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #00ffff;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #ccc;
+      margin-top: 10px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 40px 20px;
+      flex: 1;
+    }
+
+    .form-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(6px);
+      border-radius: 15px;
+      padding: 30px 25px;
+      width: 360px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      text-align: left;
+    }
+
+    .form-card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .input-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .input-group input,
+    .input-group textarea {
+      flex: 1;
+      width: 100%;
+      padding: 12px;
+      padding-right: 40px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: none;
+      background: white;
+      color: black;
+    }
+
+    .mic-btn {
+      position: absolute;
+      right: 10px;
+      background-color: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #444;
+      transition: color 0.3s;
+    }
+
+    .mic-btn:hover {
+      color: #00ffff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .blue {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    .green {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.9;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      padding: 20px;
+      color: #bbb;
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    .footer-links a {
+      color: #bbb;
+      margin: 0 5px;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Lost and Found Portal</h1>
+  <p class="subtitle">Report lost or found items easily with voice input</p>
+</header>
+
+<main class="container">
+  <!-- Report Lost Item -->
+  <section class="form-card lost">
+    <h2>⚠️ Report Lost Item</h2>
+    <form id="lostForm" enctype="multipart/form-data">
+      <div class="input-group">
+        <input type="text" name="itemName" placeholder="Lost item name" required>
+        <button type="button" class="mic-btn" data-target="itemName">🎤</button>
+      </div>
+
+      <div class="input-group">
+        <textarea name="itemDescription" placeholder="Description (brand, color, size, etc.)" required></textarea>
+        <button type="button" class="mic-btn" data-target="itemDescription">🎤</button>
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="lastSeenLocation" placeholder="Last seen location" required>
+        <button type="button" class="mic-btn" data-target="lastSeenLocation">🎤</button>
+      </div>
+
+      <label for="lostItemImage">Upload Image:</label>
+      <input type="file" id="lostItemImage" name="itemImage" accept="image/*">
+
+      <button type="submit" class="submit-btn blue">Submit</button>
+    </form>
+  </section>
+
+  <!-- Report Found Item -->
+  <section class="form-card found">
+    <h2>✔️ Report Found Item</h2>
+    <form id="foundForm" enctype="multipart/form-data">
+      <div class="input-group">
+        <input type="text" name="itemName" placeholder="Found item name" required>
+        <button type="button" class="mic-btn" data-target="itemName">🎤</button>
+      </div>
+
+      <div class="input-group">
+        <textarea name="itemDescription" placeholder="Description (brand, color, size, etc.)" required></textarea>
+        <button type="button" class="mic-btn" data-target="itemDescription">🎤</button>
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="foundLocation" placeholder="Location found" required>
+        <button type="button" class="mic-btn" data-target="foundLocation">🎤</button>
+      </div>
+
+      <label for="foundItemImage">Upload Image:</label>
+      <input type="file" id="foundItemImage" name="itemImage" accept="image/*">
+
+      <button type="submit" class="submit-btn green">Submit</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 Lost and Found System. All rights reserved.</p>
+</footer>
+
+<!-- 🔈 JavaScript for Mic (Voice-to-Text) -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      alert("Speech Recognition not supported in this browser.");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+
+    let currentTarget = null;
+
+    document.querySelectorAll(".mic-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const parentForm = button.closest("form");
+        const targetName = button.dataset.target;
+        const input = parentForm.querySelector(`[name="${targetName}"]`);
+
+        if (!input) {
+          alert("Input field not found.");
+          return;
+        }
+
+        currentTarget = input;
+        recognition.start();
+      });
+    });
+
+    recognition.addEventListener("result", (event) => {
+      const transcript = event.results[0][0].transcript;
+      if (currentTarget.tagName === "TEXTAREA") {
+        currentTarget.value += (currentTarget.value ? " " : "") + transcript;
+      } else {
+        currentTarget.value = transcript;
+      }
+    });
+
+    recognition.addEventListener("end", () => {
+      currentTarget = null;
+    });
+  });
+</script>
+
+</body>
+</html>
