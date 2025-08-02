@@ -1,0 +1,81 @@
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #101010;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px; /* Adjusting for navbar and footer */
+  width: 100%;
+  margin-top: 20px;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+
+.flex-item {
+    display: flex;
+  flex: 1;
+  background-color: #57ffff; /* Example background color */
+  border-radius: 8px;
+  height: 400px;
+    margin: 0 10px;
+    justify-content: start;
+    align-items: center;
+padding: 3%;
+
+}
+
+.notice-section {
+  width: 100%;
+}
+
+.update-section {
+    border: 2px solid #ffffff;
+  background-color: #101010;
+  width: 100%;
+}
+
+.flex-container .flex-item:first-child {
+  position: relative;
+}
+
+.flex-container .flex-item:nth-child(2) {
+  position: relative;
+}
+
+.notice-overlay {
+    color: #FFD700;
+    display: flex;
+    background-color: #101010;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 7%;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 37.5%;
+    z-index: 2;
+}
+
+.update-overlay {
+    color: black;
+    display: flex;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 7%;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 37.5%;
+    z-index: 2;
+}

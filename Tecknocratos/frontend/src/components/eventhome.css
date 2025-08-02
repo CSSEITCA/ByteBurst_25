@@ -1,0 +1,75 @@
+/* EventHome.css - Complete Styling */
+.event-section {
+  padding: 2rem;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.event-heading {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.event-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.event-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  width: 250px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+  gap: 0.5rem;
+  position: relative; /* Needed for absolute positioning if used */
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+.event-title {
+  font-size: 1.25rem;
+  color: #222;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.event-date {
+  color: #666;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.event-description {
+    color: black;
+  flex-grow: 1; /* Takes remaining space */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Adjust based on your font size */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+/* Optional: Add a fade effect at the bottom */
+.event-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(to bottom, 
+              rgba(255,255,255,0) 0%, 
+              rgba(255,255,255,1) 100%);
+  pointer-events: none;
+}
