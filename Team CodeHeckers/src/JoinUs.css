@@ -1,0 +1,249 @@
+/* Existing styles from your JoinUs.css */
+*{
+  color: black;
+}
+.join-us-container {
+   margin-top: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  position: relative;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.join-us-card {
+  margin-top: 20rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 4rem 3rem;
+  text-align: center;
+  max-width: 800px;
+  width: 90%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.join-us-icon {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  color: #3498db;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.join-us-title {
+  color: hsl(210, 100%, 15%);
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.join-us-message {
+  color: #7f8c8d;
+  font-size: 1.4rem;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+.join-us-message p {
+  margin: 1rem 0;
+}
+
+.join-us-decoration {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  display: flex;
+  gap: 15px;
+}
+
+.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(52, 152, 219, 0.1);
+}
+
+/* Animation for the circles */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.circle:nth-child(1) {
+  animation: float 3s ease-in-out infinite;
+}
+.circle:nth-child(2) {
+  animation: float 3.5s ease-in-out infinite;
+  background: rgba(52, 152, 219, 0.2);
+}
+.circle:nth-child(3) {
+  animation: float 4s ease-in-out infinite;
+  background: rgba(52, 152, 219, 0.3);
+}
+
+/* New form-specific styles */
+.join-us-form {
+  text-align: left;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: 500;
+  text-align: left;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.checkbox-option input {
+  width: auto;
+}
+
+.submit-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.submit-btn:hover {
+  background: #2980b9;
+}
+
+.submit-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .join-us-container {
+    padding: 1rem;
+  }
+  
+  .join-us-card {
+    padding: 3rem 2rem;
+    
+  }
+  
+  .join-us-icon {
+    font-size: 3rem;
+  }
+  
+  .join-us-title {
+    font-size: 1.8rem;
+  }
+  
+  .join-us-message {
+    font-size: 1.2rem;
+  }
+  
+  .circle {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .checkbox-group {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .join-us-card {
+    padding: 2rem 1.5rem;
+    width: 95%;
+  }
+  
+  .join-us-icon {
+    font-size: 2.5rem;
+  }
+  
+  .join-us-title {
+    font-size: 1.5rem;
+  }
+  
+  .join-us-message {
+    font-size: 1.1rem;
+  }
+  
+  .join-us-decoration {
+    bottom: -20px;
+    right: -20px;
+  }
+  
+  .checkbox-group {
+    grid-template-columns: 1fr;
+  }
+}
