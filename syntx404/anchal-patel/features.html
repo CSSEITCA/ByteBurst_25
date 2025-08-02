@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get in Touch - EventHorizon</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #181A23;
+      color: #E6E8ED;
+      font-family: 'IBM Plex Sans', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #23253A;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px #00000014;
+      padding: 38px 60px 32px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      color: #A97CF7;
+      letter-spacing: 1px;
+      width: 100%;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: 100%;
+      align-items: center;
+    }
+    .form-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    label {
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #fff;
+      font-size: 1.05rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #A0A4B8;
+      background: #181A23;
+      color: #E6E8ED;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 2px;
+    }
+    input:focus, textarea:focus {
+      border-color: #A97CF7;
+    }
+    .error {
+      color: #FE9C6C;
+      font-size: 0.95rem;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      min-height: 18px;
+    }
+    button {
+      background: #A97CF7;
+      color: #fff;
+      border: none;
+      padding: 14px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 4px 24px #A97CF744;
+      transition: background 0.2s;
+      width: 100%;
+    }
+    button:hover {
+      background: #8B5CF6;
+    }
+    .success {
+      color: #3FE1B0;
+      text-align: center;
+      margin-top: 18px;
+      font-weight: 600;
+      min-height: 22px;
+    }
+    @media (max-width: 900px) {
+      .container {
+        max-width: 98vw;
+        padding: 18px 8px 18px 8px;
+      }
+      form {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Get in Touch</h2>
+    <form id="contactForm" novalidate>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+        <div class="error" id="nameError"></div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+        <div class="error" id="emailError"></div>
+      </div>
+      <div class="form-group">
+        <label for="roll">Roll Number</label>
+        <input type="text" id="roll" name="roll" required pattern="^[A-Za-z0-9\-]+$" />
+        <div class="error" id="rollError"></div>
+      </div>
+      <div class="form-group">
+        <label for="feedback">Feedback</label>
+        <textarea id="feedback" name="feedback" rows="4" required></textarea>
+        <div class="error" id="feedbackError"></div>
+      </div>
+      <button type="submit">Send Feedback</button>
+      <div class="success" id="successMsg"></div>
+    </form>
+  </div>
+  <script>
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+      // Name validation
+      const name = form.name.value.trim();
+      document.getElementById('nameError').textContent = '';
+      if (name.length < 2) {
+        document.getElementById('nameError').textContent = 'Please enter your name (min 2 characters).';
+        valid = false;
+      }
+      // Email validation
+      const email = form.email.value.trim();
+      document.getElementById('emailError').textContent = '';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+        valid = false;
+      }
+      // Roll number validation
+      const roll = form.roll.value.trim();
+      document.getElementById('rollError').textContent = '';
+      if (!/^[A-Za-z0-9\-]+$/.test(roll) || roll.length < 3) {
+        document.getElementById('rollError').textContent = 'Please enter a valid roll number.';
+        valid = false;
+      }
+      // Feedback validation
+      const feedback = form.feedback.value.trim();
+      document.getElementById('feedbackError').textContent = '';
+      if (feedback.length < 10) {
+        document.getElementById('feedbackError').textContent = 'Feedback must be at least 10 characters.';
+        valid = false;
+      }
+      // Success message
+      const successMsg = document.getElementById('successMsg');
+      if (valid) {
+        successMsg.textContent = 'Thank you for your feedback!';
+        form.reset();
+        setTimeout(() => { successMsg.textContent = ''; }, 4000);
+      } else {
+        successMsg.textContent = '';
+      }
+    });
+  </script>
+</body>
+</html>
+
+

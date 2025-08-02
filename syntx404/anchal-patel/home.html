@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technokratos - Event Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0079F2;
+      --background-color: #1A1C25;
+      --text-color: #E6E8ED;
+      --accent-color: #FE9C6C;
+      --font-family: 'IBM Plex Sans', sans-serif;
+      --gradient-anim: linear-gradient(270deg, #A97CF7, #3FE1B0, #0079F2, #FE9C6C);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      background:linear-gradient(90deg,#3FE1B0 0%, #A97CF7 100%);
+      padding:0;
+      box-shadow:0 4px 24px #3FE1B044;
+    }
+    @keyframes headerFade {
+      from { opacity: 0; transform: translateY(-30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    header h1 {
+      font-size:3.2rem;
+      color:transparent;
+      font-weight:900;
+      letter-spacing:2px;
+      margin-bottom:10px;
+      background:linear-gradient(90deg,#FE9C6C 0%, #A97CF7 60%, #3FE1B0 100%);
+      background-clip:text;
+      -webkit-background-clip:text;
+      text-shadow:0 4px 32px #00000022;
+      filter:drop-shadow(0 2px 8px #A97CF799);
+      animation:headerGradient 4s infinite alternate;
+      position:relative;
+      z-index:2;
+      display:inline-block;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 14px;
+      animation: fadeInUp 1.2s;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.08rem;
+      padding: 8px 18px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    nav a:hover {
+      background: #A97CF7;
+      color: #fff;
+      box-shadow: 0 2px 12px #A97CF744;
+    }
+
+    .main-hero {
+      background: linear-gradient(120deg, #181A23 60%, #23253A 100%);
+      padding: 70px 0 50px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1.2s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+    .main-hero h2 {
+      font-size: 4rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      animation: gradientText 2.5s infinite alternate;
+    }
+    @keyframes gradientText {
+      0% { color: #fff;}
+      100% { color: #A97CF7;}
+    }
+    .main-hero h2 span {
+      color: #A97CF7;
+      background: rgba(169, 124, 247, 0.13);
+      box-shadow: 0 4px 24px #A97CF744;
+      border-radius: 8px;
+      padding: 0 12px;
+      transition: background 0.3s;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 24px #A97CF744;}
+      50% { box-shadow: 0 8px 32px #A97CF799;}
+    }
+    .main-hero p {
+      font-size: 1.3rem;
+      color: #E6E8ED;
+      margin: 32px auto 0 auto;
+      max-width: 700px;
+      animation: fadeIn 1.5s;
+    }
+    .main-hero a {
+      display: flex;
+      align-items: center;
+      border-radius: 12px;
+      padding: 18px 40px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-top: 40px;
+      gap: 10px;
+      box-shadow: 0 4px 24px #A97CF744;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: fadeInUp 1.5s;
+    }
+    .main-hero a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 32px #A97CF799;
+    }
+    .main-hero .btn-primary {
+      background: linear-gradient(90deg, #A97CF7 60%, #3FE1B0 100%);
+      color: #fff;
+      border: none;
+    }
+    .main-hero .btn-secondary {
+      border: 2px solid #A97CF7;
+      color: #A97CF7;
+      background: transparent;
+    }
+
+    /* Decorative SVG wave between sections */
+    .wave {
+      width: 100%;
+      height: 60px;
+      margin-bottom: -6px;
+      display: block;
+    }
+
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(90deg, #6c2481 60%, #57ABFF 100%);
+      position: relative;
+      animation: fadeIn 1.2s;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: white;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      animation: fadeInDown 1.2s;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #f0f0f0;
+      animation: fadeInUp 1.2s;
+    }
+
+    .stats {
+      background: #181A23;
+      padding: 40px 0;
+      animation: fadeIn 1.2s;
+    }
+    .stats div {
+      text-align: center;
+      min-width: 180px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-radius: 12px;
+      padding: 18px 0;
+    }
+    .stats div:hover {
+      transform: scale(1.07);
+      box-shadow: 0 8px 32px #A97CF744;
+      background: #23253A;
+    }
+    .stats svg {
+      margin-bottom: 10px;
+      transition: transform 0.2s;
+    }
+    .stats div:hover svg {
+      transform: scale(1.2) rotate(-8deg);
+    }
+    /* Animation for stats numbers */
+    .stats .number {
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      animation: countUp 1.2s;
+    }
+    @keyframes countUp {
+      0% { opacity: 0; transform: scale(0.7);}
+      60% { opacity: 1; transform: scale(1.1);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+    .stats .label {
+      color: #A0A4B8;
+      margin-top: 4px;
+      font-size: 1.05rem;
+    }
+
+    .features {
+      background: #181A23;
+      padding: 60px 0 70px 0;
+      animation: fadeIn 1.2s;
+    }
+    .features-header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeInDown 1.2s;
+    }
+    .features-header h2 {
+      font-size: 2.7rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    .features-header p {
+      font-size: 1.15rem;
+      color: #A0A4B8;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .feature-card {
+      background: #23253A;
+      border-radius: 18px;
+      padding: 38px 32px 32px 32px;
+      box-shadow: 0 4px 32px #00000014;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 220px;
+      animation: fadeInUp 1.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 8px 40px #A97CF744;
+      transform: translateY(-4px) scale(1.04);
+      background: linear-gradient(90deg, #A97CF7 10%, #23253A 90%);
+    }
+    .feature-icon {
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(169,124,247,0.08);
+      transition: background 0.2s;
+    }
+    .feature-card:hover .feature-icon {
+      background: rgba(169,124,247,0.18);
+    }
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .feature-desc {
+      font-size: 1rem;
+      color: #A0A4B8;
+      line-height: 1.6;
+      transition: color 0.2s;
+    }
+    .feature-card:hover .feature-desc {
+      color: #fff;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+      animation: fadeIn 1.2s;
+    }
+    .category {
+      background: linear-gradient(90deg, #e9cef8 60%, #A97CF7 100%);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      color: #1A1C25;
+      font-weight: bold;
+      font-size: 1.15rem;
+      box-shadow: 0 2px 12px #FE9C6C44;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: fadeInCategory 0.8s forwards;
+    }
+    .category:nth-child(1) { animation-delay: 0.1s; }
+    .category:nth-child(2) { animation-delay: 0.2s; }
+    .category:nth-child(3) { animation-delay: 0.3s; }
+    .category:nth-child(4) { animation-delay: 0.4s; }
+    .category:nth-child(5) { animation-delay: 0.5s; }
+    @keyframes fadeInCategory {
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .category:hover {
+      transform: scale(1.07);
+      box-shadow: 0 8px 32px #A97CF744;
+      background: linear-gradient(90deg, #A97CF7 60%, #FE9C6C 100%);
+      color: #fff;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeIn 1.2s;
+    }
+    .cta button {
+      background: linear-gradient(90deg, #0079F2 60%, #A97CF7 100%);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 4px 24px #0079F244;
+      transition: background 0.2s, transform 0.2s;
+      animation: fadeInUp 1.2s;
+    }
+    .cta button:hover {
+      background: linear-gradient(90deg, #A97CF7 60%, #FE9C6C 100%);
+      transform: scale(1.07);
+      color: #fff;
+    }
+
+    footer {
+      background: linear-gradient(90deg, #0F1017 60%, #23253A 100%);
+      text-align: center;
+      padding: 32px 0 18px 0;
+      font-size: 1rem;
+      color: var(--text-color);
+      box-shadow: 0 -4px 24px #0F101744;
+      animation: fadeIn 1.2s;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes headerGradient {
+      0% {background-position:0%;}
+      100% {background-position:100%;}
+    }
+    @keyframes floatCircle {
+      0% { transform: translateY(0) scale(1);}
+      50% { transform: translateY(-18px) scale(1.15);}
+      100% { transform: translateY(0) scale(1);}
+    }
+  </style>
+</head>
+<body>
+    <header style="background:linear-gradient(90deg,#23253A 0%, #A97CF7 100%);padding:0;box-shadow:0 4px 24px #3FE1B044; position:relative; overflow:hidden;">
+      <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:170px;">
+        <h1 style="
+          position:relative;
+          z-index:2;
+          font-family:'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
+          font-size:3.2rem;
+          font-weight:900;
+          letter-spacing:2px;
+          margin-bottom:10px;
+          background:linear-gradient(90deg,#FE9C6C 0%, #A97CF7 60%, #3FE1B0 100%);
+          background-clip:text;
+          -webkit-background-clip:text;
+          color:transparent;
+          text-shadow:0 4px 32px #00000022;
+          filter:drop-shadow(0 2px 8px #A97CF799);
+          animation:headerGradient 4s infinite alternate;
+          transition: text-shadow 0.3s;
+        " onmouseover="this.style.textShadow='0 8px 32px #FE9C6C99';" onmouseout="this.style.textShadow='0 4px 32px #00000022';">
+          Technokratos <span style="font-family:'Segoe Script',cursive;font-size:2.2rem;background:none;color:#fff;text-shadow:0 2px 12px #FE9C6C99;">Event Management</span>
+        </h1>
+        <!-- Theme toggle button -->
+        <button id="themeToggle" style="position:absolute;top:18px;right:32px;z-index:10;padding:8px 18px;border-radius:22px;border:none;background:#A97CF7;color:#fff;font-weight:700;box-shadow:0 2px 12px #A97CF744;cursor:pointer;transition:background 0.2s;">
+          🌙 Dark
+        </button>
+        <!-- Animated floating circles for visual effect -->
+        <div id="header-circles" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;">
+          <span style="position:absolute;top:30px;left:60px;width:32px;height:32px;border-radius:50%;background:rgba(169,124,247,0.18);animation:floatCircle 5s infinite alternate;"></span>
+          <span style="position:absolute;top:80px;right:80px;width:18px;height:18px;border-radius:50%;background:rgba(63,225,176,0.18);animation:floatCircle 6s infinite alternate-reverse;"></span>
+          <span style="position:absolute;top:120px;left:180px;width:22px;height:22px;border-radius:50%;background:rgba(254,156,108,0.18);animation:floatCircle 7s infinite alternate;"></span>
+        </div>
+        <!-- Removed background image from header -->
+      </div>
+      <nav style="margin-top:0;padding-bottom:10px;">
+        <a href="home.html" style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;">Home</a>
+        <a href="events.html" style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;">Events</a>
+        <a href="about.html" style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;">About</a>
+        <a href="studentlogin.html" style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;">Register</a>
+        <a href="features.html" style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;">Features</a>
+      </nav>
+    </header>
+    <style>
+      body.light-theme {
+        --background-color: #f7f8fa;
+        --text-color: #23253A;
+        --accent-color: #A97CF7;
+      }
+      body.light-theme {
+        background-color: var(--background-color);
+        color: var(--text-color);
+      }
+      body.light-theme header {
+        background: linear-gradient(90deg,#fff 0%, #A97CF7 100%);
+        box-shadow: 0 4px 24px #A97CF744;
+      }
+      body.light-theme .main-hero {
+        background: linear-gradient(120deg, #f7f8fa 60%, #e9eaf3 100%);
+      }
+      body.light-theme .hero {
+        background: linear-gradient(90deg, #e9eaf3 60%, #A97CF7 100%);
+      }
+      body.light-theme .stats,
+      body.light-theme .features {
+        background: #f7f8fa;
+      }
+      body.light-theme .feature-card {
+        background: #fff;
+        color: #23253A;
+      }
+      body.light-theme .feature-title,
+      body.light-theme .feature-desc {
+        color: #23253A;
+      }
+      body.light-theme .category {
+        background: linear-gradient(90deg, #A97CF7 60%, #e9cef8 100%);
+        color: #23253A;
+      }
+      body.light-theme .category:hover {
+        background: linear-gradient(90deg, #FE9C6C 60%, #A97CF7 100%);
+        color: #fff;
+      }
+      body.light-theme .cta button {
+        background: linear-gradient(90deg, #A97CF7 60%, #FE9C6C 100%);
+        color: #fff;
+      }
+      body.light-theme footer {
+        background: linear-gradient(90deg, #e9eaf3 60%, #A97CF7 100%);
+        color: #23253A;
+      }
+    </style>
+
+  <section class="main-hero">
+    <h2>
+      Campus Events <span>Made</span><br>
+      <span>Simple</span>
+    </h2>
+    <p>
+      Discover, create, and manage amazing campus events. Connect with student organizations, earn achievement badges, and never miss out on what's happening at your university.
+    </p>
+    <div style="display:flex; justify-content:center; gap:24px; margin-top:40px; flex-wrap:wrap;">
+      <a href="#" class="btn-primary">
+        <svg width="22" height="22" fill="#fff" style="margin-right:10px;" viewBox="0 0 24 24"><path d="M2 21l21-9-21-9v7l15 2-15 2z"/></svg>
+        Get Started
+      </a>
+      <a href="#" class="btn-secondary">
+        <svg width="22" height="22" fill="#A97CF7" style="margin-right:10px;" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        Watch Demo
+      </a>
+    </div>
+    <!-- Decorative SVG wave -->
+    <svg class="wave" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#0079F2" fill-opacity="0.15" d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"></path>
+    </svg>
+  </section>
+
+  <section class="hero" style="background:linear-gradient(90deg,#23253A 60%, #A97CF7 100%);padding:70px 0 60px 0;position:relative;overflow:hidden;">
+    <div class="hero-content" style="max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:2;">
+      <h2 style="
+        font-size:2.7rem;
+        font-weight:900;
+        letter-spacing:1px;
+        color:#fff;
+        margin-bottom:18px;
+        background:linear-gradient(90deg,#FE9C6C 0%, #A97CF7 60%, #3FE1B0 100%);
+        background-clip:text;
+        -webkit-background-clip:text;
+        color:transparent;
+        animation:heroGradient 3s infinite alternate;
+      ">
+        <span class="hero-anim" style="display:inline-block;animation:fadeInUpHero 1.2s;">Plan</span>
+        <span style="margin:0 18px;display:inline-block;animation:fadeInUpHero 1.5s;">&#8226;</span>
+        <span class="hero-anim" style="display:inline-block;animation:fadeInUpHero 1.8s;">Organize</span>
+        <span style="margin:0 18px;display:inline-block;animation:fadeInUpHero 2.1s;">&#8226;</span>
+        <span class="hero-anim" style="display:inline-block;animation:fadeInUpHero 2.4s;">Celebrate</span>
+      </h2>
+      <p style="
+        font-size:1.25rem;
+        color:#E6E8ED;
+        margin-bottom:32px;
+        animation:fadeIn 1.5s;
+      ">
+        Your one-stop solution for unforgettable events.<br>
+        <span style="color:#A97CF7;font-weight:600;">Create</span>, <span style="color:#FE9C6C;font-weight:600;">manage</span>, and <span style="color:#3FE1B0;font-weight:600;">enjoy</span> campus experiences with ease.
+      </p>
+      <!-- Removed Get Started and Watch Demo buttons -->
+    </div>
+    <!-- Animated floating shapes for visual effect -->
+    <span style="position:absolute;top:30px;left:60px;width:38px;height:38px;border-radius:50%;background:rgba(169,124,247,0.13);animation:floatCircle 5s infinite alternate;"></span>
+    <span style="position:absolute;top:120px;right:80px;width:22px;height:22px;border-radius:50%;background:rgba(63,225,176,0.13);animation:floatCircle 6s infinite alternate-reverse;"></span>
+    <span style="position:absolute;bottom:40px;left:180px;width:28px;height:28px;border-radius:50%;background:rgba(254,156,108,0.13);animation:floatCircle 7s infinite alternate;"></span>
+    <style>
+      @keyframes heroGradient {
+        0% {background-position:0%;}
+        100% {background-position:100%;}
+      }
+      @keyframes fadeInUpHero {
+        from { opacity: 0; transform: translateY(30px);}
+        to { opacity: 1; transform: translateY(0);}
+      }
+    </style>
+  </section>
+
+  <section class="stats">
+    <div style="display:flex; justify-content:space-around; align-items:center; max-width:900px; margin:0 auto; flex-wrap:wrap;">
+      <div>
+        <svg width="40" height="40" fill="#A97CF7" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v10z"/></svg>
+        <div class="number" style="color:#A97CF7;">500+</div>
+        <div class="label">Active Events</div>
+      </div>
+      <div>
+        <svg width="40" height="40" fill="#A97CF7" viewBox="0 0 24 24"><path d="M12 2l1.5 4.5h4.5l-3.75 2.75 1.5 4.5-3.75-2.75-3.75 2.75 1.5-4.5-3.75-2.75h4.5z"/></svg>
+        <div class="number" style="color:#A97CF7;">10K+</div>
+        <div class="label">Students</div>
+      </div>
+      <div>
+        <svg width="40" height="40" fill="#3FE1B0" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <div class="number" style="color:#3FE1B0;">250+</div>
+        <div class="label">Organizations</div>
+      </div>
+      <div>
+        <svg width="40" height="40" fill="#A97CF7" viewBox="0 0 24 24"><path d="M14 7l-5 5 5 5V7z"/></svg>
+        <div class="number" style="color:#A97CF7;">50+</div>
+        <div class="label">Universities</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="features-header">
+      <h2>Everything You Need</h2>
+      <p>
+        Powerful features designed specifically for campus event management and student engagement.<br>
+        From creation to analytics, we've got every aspect covered.
+      </p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="36" height="36" fill="#A97CF7" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <div class="feature-title">Student Profiles</div>
+        <div class="feature-desc">Personalized dashboards with event history, preferences, and achievement badges.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="36" height="36" fill="#A97CF7" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm0-13H5V5h14v1z"/></svg>
+        </div>
+        <div class="feature-title">Event Creation</div>
+        <div class="feature-desc">Easy-to-use tools for creating single events, recurring meetups, and multi-day festivals.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(63,225,176,0.08);">
+          <svg width="36" height="36" fill="#3FE1B0" viewBox="0 0 24 24"><path d="M17 2v2h-2v2h-2V4h-2V2H7v2H5v2H3v2h2v2h2V8h2v2h2V8h2v2h2V8h2V6h2V4h-2V2h-2zm-2 8h-2v2h2v-2zm-4 0H9v2h2v-2zm-4 0H5v2h2v-2zm8 4h-2v2h2v-2zm-4 0H9v2h2v-2zm-4 0H5v2h2v-2zm8 4h-2v2h2v-2zm-4 0H9v2h2v-2zm-4 0H5v2h2v-2z"/></svg>
+        </div>
+        <div class="feature-title">Gamification</div>
+        <div class="feature-desc">Earn badges and points for attending events and engaging with organizations.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="36" height="36" fill="#A97CF7" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
+        </div>
+        <div class="feature-title">Venue</div>
+        <div class="feature-desc">Reserve classrooms, auditoriums, and other campus spaces for your events.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories">
+    <div class="category">Events</div>
+    <div class="category">Concerts</div>
+    <div class="category">Workshops</div>
+    <div class="category">Festivals</div>
+    <div class="category">Hackathons</div>
+  </section>
+
+  
+
+  <footer>
+    &copy; 2025 EventHorizon. All rights reserved.
+  </footer>
+  <script>
+    // Animate stats numbers (count up effect)
+    document.querySelectorAll('.stats .number').forEach(function(el) {
+      const finalValue = el.textContent.replace(/\D/g, '');
+      if (!finalValue) return;
+      let start = 0;
+      let end = parseInt(finalValue, 10);
+      let duration = 900;
+      let step = Math.ceil(end / 40);
+      let current = start;
+      let interval = setInterval(function() {
+        current += step;
+        if (current >= end) {
+          el.textContent = el.textContent;
+          clearInterval(interval);
+        } else {
+          el.textContent = current + '+';
+        }
+      }, duration / (end / step));
+    });
+
+    // Theme toggle logic
+    const themeToggle = document.getElementById('themeToggle');
+    let darkMode = true;
+    themeToggle.addEventListener('click', function() {
+      darkMode = !darkMode;
+      if (darkMode) {
+        document.body.classList.remove('light-theme');
+        themeToggle.textContent = '🌙 Dark';
+      } else {
+        document.body.classList.add('light-theme');
+        themeToggle.textContent = '☀️ Light';
+      }
+    });
+  </script>
+</body>
+</html>
+       
+  </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - EventHorizon</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #181A23;
+            color: #E6E8ED;
+            font-family: 'IBM Plex Sans', sans-serif;
+            margin: 0;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #A97CF7;
+        }
+        .filter-group {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 36px;
+        }
+        .filter-btn {
+            background: #23253A;
+            color: #A97CF7;
+            border: 2px solid #A97CF7;
+            border-radius: 10px;
+            padding: 10px 28px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: #A97CF7;
+            color: #fff;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+        }
+        .team-card {
+            background: #23253A;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px #00000014;
+            padding: 32px 24px 24px 24px;
+            text-align: center;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .team-card:hover {
+            box-shadow: 0 8px 40px #A97CF744;
+            transform: translateY(-4px) scale(1.02);
+        }
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #A97CF7;
+            margin: 0 auto 18px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #fff;
+            font-weight: 700;
+        }
+        .member-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .member-post {
+            font-size: 1.05rem;
+            color: #A0A4B8;
+            margin-bottom: 4px;
+        }
+        .member-year {
+            font-size: 1rem;
+            color: #3FE1B0;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Meet Our Team</h2>
+        <div class="filter-group">
+            <button class="filter-btn active" data-year="all">All</button>
+            <button class="filter-btn" data-year="3">3rd Year</button>
+            <button class="filter-btn" data-year="4">4th Year</button>
+        </div>
+        <div class="team-grid" id="teamGrid">
+            <!-- Team cards will be injected here -->
+        </div>
+    </div>
+    <script>
+        // Example team data
+        const teamMembers = [
+            { name: "Amit Kumar Sahani", post: "Student Secretary", year: 4, avatar: "AS" },
+            { name: "Aditya Tripathi", post: "Executive Member", year: 4, avatar: "PS" },
+            { name: "Aditi Yadav", post: "Event Coordinator", year: 3, avatar: "RV" },
+            { name: "Sneha Patel", post: "Design Lead", year: 3, avatar: "SP" },
+            { name: "Vikram Joshi", post: "Tech Lead", year: 4, avatar: "VJ" },
+            { name: "Megha Rao", post: "Marketing", year: 3, avatar: "MR" },
+            { name: "Ankit Mehta", post: "Treasurer", year: 4, avatar: "AM" },
+            { name: "Sandhya Kumari", post: "Content Lead", year: 3, avatar: "SK" }
+        ];
+
+        function renderTeam(yearFilter) {
+            const grid = document.getElementById('teamGrid');
+            grid.innerHTML = '';
+            teamMembers
+                .filter(m => yearFilter === 'all' || m.year == yearFilter)
+                .forEach(m => {
+                    grid.innerHTML += `
+                        <div class="team-card">
+                            <div class="avatar">${m.avatar}</div>
+                            <div class="member-name">${m.name}</div>
+                            <div class="member-post">${m.post}</div>
+                            <div class="member-year">${m.year} Year</div>
+                        </div>
+                    `;
+                });
+        }
+
+        // Filter button logic
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderTeam(this.getAttribute('data-year'));
+            });
+        });
+
+        // Initial render
+        renderTeam('all');
+    </script>
+</body>
+</html>
