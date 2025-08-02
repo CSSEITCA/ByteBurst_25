@@ -1,0 +1,48 @@
+name: unico_app
+description: A campus connect app for students to chat, find events, and build peer groups.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Firebase Core SDK
+  firebase_core: ^2.25.4
+
+  # Firebase Authentication
+  firebase_auth: ^4.17.3
+
+  # Firebase Cloud Firestore
+  cloud_firestore: ^4.13.6
+
+  # Firebase Realtime Database (for real-time chat)
+  firebase_database: ^10.5.7
+
+  # Firebase Cloud Messaging (notifications)
+  firebase_messaging: ^14.7.4
+
+  # State management
+  provider: ^6.1.2
+
+  # Utilities
+  uuid: ^4.2.1
+
+  # UI
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
