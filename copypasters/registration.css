@@ -1,0 +1,83 @@
+/* Reset & base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+font-family: 'Montserrat', sans-serif;
+  background-color: black;
+  color: white;
+}
+.csse{
+    width: 100px;
+    height: 30px;
+}
+/* Navbar */
+.navbar {
+  background-color: black;
+  padding: 20px 0;
+  text-align: center;
+  border-bottom: 2px solid #1a1a1a;
+}
+
+.navbar-center {
+  font-size: 28px;
+  color: #ff00c8;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Registration Container */
+.form-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 40px;
+  background-color:  #469fb8;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.form-container h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+/* Form */
+.registration-form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 6px;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.registration-form input,
+.registration-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  resize: none;
+}
+
+.registration-form button {
+  margin-top: 30px;
+  width: 100%;
+  padding: 12px;
+  background-color: #4256b1;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.registration-form button:hover {
+  background-color: #233280;
+}
